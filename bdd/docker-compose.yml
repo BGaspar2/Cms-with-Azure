@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  db:
+    image: mariadb
+    container_name: mydb
+    restart: always
+    volumes:
+      - ./data-mariadb:/var/lib/mariadb
+      - ./mariadb:/root/mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin1234
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=admin1234
+      - MARIADB_DATABASE=wordpress
+      - VIRTUAL_HOST:dbgaspar.cmsbryanvmcloud.online
+    ports:
+      - 80:3306

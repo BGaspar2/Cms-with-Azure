@@ -1,0 +1,67 @@
+version: "3"
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    expose:
+      - "443"
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: dbgasparcms.bryanvmcloud.online:80
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: admin1234
+      WORDPRESS_DB_NAME: wordpress
+      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online        
+      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online     
+
+  joomla:
+    image: joomla
+    container_name: joomla
+    restart: unless-stopped
+    expose:
+      - "443"
+    volumes:
+      - ./html:/var/www/html
+    environment:
+      JOOMLA_DB_HOST: dbgasparcms.bryanvmcloud.online:80
+      JOOMLA_DB_PASSWORD: admin1234
+      JOOMLA_DB_NAME: joomla
+      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online       
+      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online   
+
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+
+  nginx-proxy-letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-letsencrypt
+    restart: always
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+    environment:
+      - DEFAULT_EMAIL=bryangaspar202@gmail.com     
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+
+volumes:
+  certs: {}
+  vhost.d: {}
