@@ -15,8 +15,8 @@ services:
       WORDPRESS_DB_USER: admin
       WORDPRESS_DB_PASSWORD: admin1234
       WORDPRESS_DB_NAME: wordpress
-      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online        
-      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online     
+      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online
+      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online
 
   joomla:
     image: joomla
@@ -30,8 +30,8 @@ services:
       JOOMLA_DB_HOST: dbgasparcms.bryanvmcloud.online:80
       JOOMLA_DB_PASSWORD: admin1234
       JOOMLA_DB_NAME: joomla
-      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online       
-      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online   
+      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online
+      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online
 
 
   nginx-proxy:
@@ -59,7 +59,7 @@ services:
       - vhost.d:/etc/nginx/vhost.d
       - ./html:/usr/share/nginx/html
     environment:
-      - DEFAULT_EMAIL=bryangaspar202@gmail.com     
+      - DEFAULT_EMAIL=bryangaspar202@gmail.com
       - NGINX_PROXY_CONTAINER=nginx-proxy
 
 volumes:

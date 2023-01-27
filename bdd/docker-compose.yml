@@ -12,6 +12,7 @@ services:
       - MARIADB_USER=admin
       - MARIADB_PASSWORD=admin1234
       - MARIADB_DATABASE=wordpress
-      - VIRTUAL_HOST:dbgaspar.cmsbryanvmcloud.online
+      - VIRTUAL_HOST:dbgasparcms.bryanvmcloud.online
     ports:
       - 80:3306
+
