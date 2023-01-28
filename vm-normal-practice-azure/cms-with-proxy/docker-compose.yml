@@ -1,39 +1,39 @@
 version: "3.3"
 services:
   wordpress:
-    image: wordpress:latest
+    image: wordpress:latest # cms N°1 
     container_name: wordpress
     expose:
-      - "443"
+      - "443" # port 443 para HTTPS
     restart: unless-stopped
     depends_on:
       - nginx-proxy
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html # volumen de persistencia
     environment:
-      WORDPRESS_DB_HOST: dbgasparcms.bryanvmcloud.online:80
+      WORDPRESS_DB_HOST: dbgasparcms.bryanvmcloud.online:80 # HOST DE LA BASE DE DATOS
       WORDPRESS_DB_USER: admin
       WORDPRESS_DB_PASSWORD: admin1234
       WORDPRESS_DB_NAME: wordpress
-      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online
-      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online
+      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online # Host del cms
+      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online # Obteniendo certificados SSL
 
   joomla:
-    image: joomla
+    image: joomla # cms N°2
     container_name: joomla
     restart: unless-stopped
     expose:
-      - "443"
+      - "443" # port 443 para HTTPS
     volumes:
-      - ./html:/var/www/html
+      - ./html:/var/www/html  # volumen de persistencia
     environment:
-      JOOMLA_DB_HOST: dbgasparcms.bryanvmcloud.online:80
+      JOOMLA_DB_HOST: dbgasparcms.bryanvmcloud.online:80  # HOST DE LA BASE DE DATOS
       JOOMLA_DB_PASSWORD: admin1234
       JOOMLA_DB_NAME: joomla
-      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online
-      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online
+      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online # Host del cms
+      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online # Obteniendo certificados SSL
 
-
+  #PROXY + LET'S ENCRYPT
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy

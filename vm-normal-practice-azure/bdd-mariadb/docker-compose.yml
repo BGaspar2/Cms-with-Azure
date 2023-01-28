@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  db:
+    image: mariadb # Base de datos a utilizar para los cms
+    container_name: mydb # Nombre del container
+    restart: always
+    volumes: # Volumen de persistencia de datos
+      - ./data-mariadb:/var/lib/mariadb
+      - ./mariadb:/root/mariadb
+    environment: # Variables de entorno
+      - MARIADB_ROOT_PASSWORD=admin1234
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=admin1234
+      - MARIADB_DATABASE=wordpress
+      - VIRTUAL_HOST:dbgasparcms.bryanvmcloud.online # DNS proporcionado por GoDaddy o un servicio gratuito
+    ports: # Puertos
+      - 80:3306
+
