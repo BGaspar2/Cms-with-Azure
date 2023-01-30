@@ -22,7 +22,7 @@ sudo systemctl restart docker
 git clone https://github.com/BGaspar2/cmswithazure.git
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-cd cmswithazure/vm-normal-practice-azure/bdd-mariadb/cms-with-proxy/
+cd cmswithazure/vm-normal-practice-azure/cms-with-proxy/
 sudo docker-compose up -d
 
 
