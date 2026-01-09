@@ -140,12 +140,12 @@ resource "azurerm_linux_virtual_machine" "my_bdd_vm" {
   }
 
   computer_name                   = "vm-terraform-db"
-  admin_username                  = "bryan-gaspar"
-  admin_password                  = "0850594573@Bg"
+  admin_username                  = "YOUR_USERNAME"
+  admin_password                  = "YOUR_PASSWORD"
   disable_password_authentication = false
 
   admin_ssh_key {
-    username   = "bryan-gaspar"
+    username   = "YOUR_USERNAME"
     public_key = tls_private_key.examplebdd_ssh.public_key_openssh
   }
 
