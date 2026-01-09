@@ -8,11 +8,11 @@ services:
       - ./data-mariadb:/var/lib/mariadb
       - ./mariadb:/root/mariadb
     environment: # Variables de entorno
-      - MARIADB_ROOT_PASSWORD=admin1234
+      - MARIADB_ROOT_PASSWORD=YOUR_ROOT_PASSWORD
       - MARIADB_USER=admin
-      - MARIADB_PASSWORD=admin1234
+      - MARIADB_PASSWORD=YOUR_ADMIN_PASSWORD
       - MARIADB_DATABASE=wordpress
-      - VIRTUAL_HOST:dbgasparcms.bryanvmcloud.online # DNS proporcionado por GoDaddy o un servicio gratuito
+      - VIRTUAL_HOST: your-domain.com
     ports: # Puertos
       - 80:3306
 

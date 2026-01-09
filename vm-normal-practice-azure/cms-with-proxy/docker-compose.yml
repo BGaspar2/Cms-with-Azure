@@ -11,12 +11,12 @@ services:
     volumes:
       - ./src:/var/www/html # volumen de persistencia
     environment:
-      WORDPRESS_DB_HOST: dbgasparcms.bryanvmcloud.online:80 # HOST DE LA BASE DE DATOS
+      WORDPRESS_DB_HOST: YOUR_DB_HOST:80  # HOST DE LA BASE DE DATOS
       WORDPRESS_DB_USER: admin
-      WORDPRESS_DB_PASSWORD: admin1234
+      WORDPRESS_DB_PASSWORD: YOUR_ADMIN_PASSWORD
       WORDPRESS_DB_NAME: wordpress
-      VIRTUAL_HOST: site1gaspar.bryanvmcloud.online # Host del cms
-      LETSENCRYPT_HOST: site1gaspar.bryanvmcloud.online # Obteniendo certificados SSL
+      VIRTUAL_HOST: YOUR_CMS_HOST # Host del cms
+      LETSENCRYPT_HOST: YOUR_CMS_HOST # Obteniendo certificados SSL
 
   joomla:
     image: joomla # cms N°2
@@ -27,11 +27,11 @@ services:
     volumes:
       - ./html:/var/www/html  # volumen de persistencia
     environment:
-      JOOMLA_DB_HOST: dbgasparcms.bryanvmcloud.online:80  # HOST DE LA BASE DE DATOS
-      JOOMLA_DB_PASSWORD: admin1234
+      JOOMLA_DB_HOST: YOUR_DB_HOST:80  # HOST DE LA BASE DE DATOS
+      JOOMLA_DB_PASSWORD: YOUR_ADMIN_PASSWORD
       JOOMLA_DB_NAME: joomla
-      VIRTUAL_HOST: sitejoomlagaspar.bryanvmcloud.online # Host del cms
-      LETSENCRYPT_HOST: sitejoomlagaspar.bryanvmcloud.online # Obteniendo certificados SSL
+      VIRTUAL_HOST: YOUR_CMS_HOST # Host del cms
+      LETSENCRYPT_HOST: YOUR_CMS_HOST # Obteniendo certificados SSL
 
   #PROXY + LET'S ENCRYPT
   nginx-proxy:
@@ -59,7 +59,7 @@ services:
       - vhost.d:/etc/nginx/vhost.d
       - ./html:/usr/share/nginx/html
     environment:
-      - DEFAULT_EMAIL=bryangaspar202@gmail.com
+      - DEFAULT_EMAIL=YOUR_DEFAULT_EMAIL # Email para registrar los certificados SSL
       - NGINX_PROXY_CONTAINER=nginx-proxy
 
 volumes:
